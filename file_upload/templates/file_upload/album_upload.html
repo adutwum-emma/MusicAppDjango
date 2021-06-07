@@ -1,0 +1,47 @@
+{% extends 'homepage/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'file_upload/album_up.css' %}">
+</head>
+<body>
+    {% block content %}
+    {% if user.is_authenticated %}
+    <div class="form-3">
+        <div class="lower">
+            <h4>Upload Album</h4>
+            <form action="" method="post" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <div class="entry">
+                    <input type="text" name="album_title" placeholder="Album Title" required value="">
+                </div>
+
+                <div class="entry2">
+                    <h5>Image</h5>
+                    <input type="file" name="image"  accept=".jpg, .jpeg, .png" required> 
+                </div>
+
+                <div class="upload">
+                    <input type="submit" value="Upload">
+                </div>
+
+            </form>
+        </div>
+    </div>
+    {% else %}
+
+    <div style="text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 18px; margin-top: 60px;">
+        Not allowed! Log in before you can make uploads
+    </div>
+
+    {% endif %}
+    {% endblock %}
+</body>
+</html>

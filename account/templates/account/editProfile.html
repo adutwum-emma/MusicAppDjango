@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+</head>
+<body>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: rgb(233, 233, 233)
+        }
+
+        .editP{
+            padding: 20px;
+            background-color: white;
+            margin: 10px;
+            width: 470px;
+            border-radius: 6px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .editP h4{
+            text-align: center;
+            font-family: poppins;
+            color: black;
+            font-size: 19px;
+            letter-spacing: normal;
+            font-weight: normal;
+            width: 100%;
+            background-color: rgb(236, 223, 38);
+            padding: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .editP .entry{
+            margin-bottom: 15px;
+        }
+
+        .editP .entry input[type=text], .editP .entry input[type=email]{
+            padding: 10px;
+            width: 100%;
+        }
+
+        .editP .label{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 18px;
+            background-color: rgb(218, 214, 214);
+            padding: 5px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .editP .submit{
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .editP .submit input[type="submit"], .editP .reset input[type="reset"]{
+            padding: 20px;
+            border-radius: 6px;
+            border-style: none;
+            background-color: rgb(236, 223, 38);
+            font-size: 18px;
+            opacity: 0.7;
+            transition: 0.8s;
+        }
+
+        .editP .reset input[type="reset"]{
+            background-color: darkslategray;
+            color: white;
+            transition: 0.7s;
+            opacity: 0.8;
+        }
+
+        .editP .reset input[type="reset"]:hover{
+            opacity: 1;
+        }
+
+        .editP .submit input[type="submit"]:hover{
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .editP .reset{
+            padding: 10px;
+        }
+
+        .buttons{
+            display: flex;
+        }
+
+        .back a:hover{
+            text-decoration: underline;
+        }
+
+        .message{
+            color: red;
+            text-align: center;
+            font-family: poppins;
+            font-weight: lighter;
+            font-size: 18px;
+        }
+    </style>
+    <div class="editP">
+        <div class="editUnder">
+            <div class="back" style="margin: 10px;">
+                <a style="text-decoration: none; font-family: -apple-system, 
+                BlinkMacSystemFont, 'Segoe UI', 
+                Roboto, Oxygen, Ubuntu, Cantarell, 
+                'Open Sans', 'Helvetica Neue', sans-serif;" href="{% url 'account:profile' user.id %}">Back</a>
+            </div>
+            <form action="" method="post" >
+                {% csrf_token %}
+                <h4>Edit profile...</h4>
+                {% for message in messages %}
+                <div class="message">{{message}}</div>
+                {% endfor %}
+                <div>
+                    <div class="label">
+                        User Name
+                    </div>
+                    <div class="entry">
+                        <input type="text" name="username" value="{{user.username}}" required>
+                    </div>
+
+                    <div class="label">
+                        First Name
+                    </div>
+                    <div class="entry">
+                        <input type="text" name="firstname" value="{{user.first_name}}" required>
+                    </div>
+
+                    <div class="label">
+                        Last Name
+                    </div>
+                    <div class="entry">
+                        <input type="text" name="lastname" value="{{user.last_name}}" required>
+                    </div>
+
+                    <div class="label">
+                        Email
+                    </div>
+                    <div class="entry">
+                        <input type="email" name="email" value="{{user.email}}" required>
+                    </div>
+
+                    <input type="hidden" name="use" value="{{user.id}}">
+
+                   <div class="buttons">
+                        <div class="submit">
+                            <input type="submit" value="Save">
+                        </div>
+
+                        <div class="reset">
+                            <input type="reset" value="Clear">
+                        </div>
+                   </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

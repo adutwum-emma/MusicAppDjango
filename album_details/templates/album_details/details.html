@@ -1,0 +1,85 @@
+{% extends 'homepage/base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+	{% load static %}
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'album_details/detail_style.css' %}">
+</head>
+<body>
+
+	{% block content %}
+	<div class="logo-main">
+		<div class="the-logo">
+			<div class="pic">
+				<img src="{{album.album_logo.url}}" width="245" height="300">
+			</div>
+			<div class="titles">
+				<h5>{{album.artist.username}}</h5>
+				<h6>{{album.album_title}}</h6>
+				<h7>{{album.date_added}}</h7>
+			</div>
+		</div>
+	</div>
+	<div class="details-main">
+		<div class="middle-container">
+			<div class="table">
+				{% if user.is_authenticated %}
+				<div style="text-align: center; margin: 10px;">
+					{% if user.is_authenticated %}
+					
+					{% if user.id == album.artist.id %}
+					<a href="{% url 'file_upload:uploadSong' album.id %}">Upload Song</a>
+					{% else %}
+
+					{% endif %}
+
+					{% else %}
+					{% endif %}
+					{% for message in messages %}
+				<div style="color: white; margin: 10px; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 17px; 
+				font-weight: lighter;">{{message}}</div>
+				{% endfor %}
+				</div>
+				{% else %}
+				{% endif %}
+				<form action="{% url 'album_details:delete' %}" method="post">
+				
+					{% csrf_token %}
+					<div class="headers">
+						<ul class="heading">
+							<li> Song Title </li>
+							<li> Audio File </li>
+							<li> Date Added </li>
+						</ul>
+					</div>
+
+					{% for data in album.song_set.all %}
+					<div class="data-class">
+						<ul>
+							<li><input type="checkbox" name="song" id="song{{forloop.counter}}" value="{{data.id}}"> <label for="song{{forloop.counter}}">{{data.song_title}}</label> </li>
+							<li><input type="hidden" name="song_id" value="{{data.album.id}}"></li>
+							<li> <a href="{{data.audio.url}}" target="_blank">Download</a> </li>
+							<li id="song"> {{data.date_added}}</li>
+						</ul>
+					</div>
+					{% endfor %}
+
+					<div class="delete">
+						{% if user.is_authenticated %}
+						{% if album.artist.id == user.id %}
+						<input type="Submit" value="Delete">
+						{% else %}
+						{% endif %}
+						{% else %}
+
+						{% endif %}
+					</div>
+				
+				</form> 
+			</div> 
+		</div> 
+	</div>
+	{% endblock %}
+</body>
+</html>

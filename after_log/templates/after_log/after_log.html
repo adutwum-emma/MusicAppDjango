@@ -1,0 +1,34 @@
+{% extends 'homepage/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'after_log/afterlog_style.css' %}">
+</head>
+<body>
+
+    {% block content %}
+    <div class="main-container">
+        <div class="middle-container">
+            <div class="artist_name">
+                <strong>Sarkodie</strong>
+            </div>
+            <div class="image">
+                <img src="sark.jpg" width="400" height="400">
+            </div>
+            <div class="buttons">
+                <ul>
+                    <li><a id="b1" href="#">View Songs</a></li>
+                    <li><a id="b2" href="#">Delete</a></li>
+                    <li><a id="b3" href="#">Edit</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    
+</body>
+</html>

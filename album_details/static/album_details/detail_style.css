@@ -1,0 +1,117 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+
+/*-----------THE MAIN LOGO--------------*/
+.logo-main{
+	margin: 10px;
+	background-color: #ececec;
+	padding: 30px;
+	width: 320px;
+	border-radius: 7px;
+	float: left;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+}
+
+.logo-main img{
+	border-radius: 1000px;
+}
+
+.titles{
+	border-bottom: 1px solid #d3d3d3;
+	border-left: 1px solid #d3d3d3;
+	padding: 10px;
+}
+
+.titles h5{
+	font-size: 19px;
+	font-family: poppins;
+	letter-spacing: 1px;
+}
+
+.titles h6{
+	font-size: 17px;
+	font-family: arial;
+	letter-spacing: 1px;
+}
+
+.titles h7{
+	font-size: 16px;
+	font-family: poppins;
+	font-weight: lighter;
+}
+
+/*----------------THE MAIN LIST -----------*/
+
+.details-main{
+	margin: 10px;
+	margin-left: 15px;
+	float: left;
+	background-color: #415a76;
+	padding: 20px;
+}
+
+.details-main .heading li{
+	list-style: none;
+	display: inline;
+	vertical-align: middle;
+	font-size: 19px;
+	text-transform: uppercase;
+	font-family: poppins;
+	font-weight: lighter;
+	margin-left: 55px;
+	color: #f6e30f;
+}
+
+.details-main .data-class{
+	margin-top: 10px;
+}
+
+.details-main .data-class li{
+	list-style: none;
+	display: inline;
+	vertical-align: middle;
+	font-size: 17px;
+	font-family: poppins;
+	font-weight: lighter;
+	margin-left: 65px;
+	color: white;
+}
+
+#song{
+	cursor: default;
+}
+
+.details-main .data-class a{
+	text-decoration: none;
+	color: black;
+	background-color: #f6e30f;
+	padding: 5px;
+	border-radius: 8px;
+	opacity: 0.7;
+	transition: 0.6s;
+}
+
+.details-main .data-class a:hover{
+	opacity: 0.9;
+}
+
+.delete{
+	margin: 10px;
+	text-align: right;
+}
+
+.delete input[type="submit"]{
+	padding: 11px;
+	border-radius: 4px;
+	transition: 0.8s;
+	font-size: 17px;
+}
+
+.delete input[type="submit"]:hover{
+	background-color: #999889;
+	cursor: pointer;
+}

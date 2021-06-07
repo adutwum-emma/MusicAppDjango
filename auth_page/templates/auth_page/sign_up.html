@@ -1,0 +1,71 @@
+{% extends 'homepage/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'auth_page/sign_up.css' %}">
+</head>
+<body>
+    {% block content %}
+
+    {% if user.is_authenticated %}
+   
+    <div style="text-align: center; color: black; font-weight: bolder; font-size: 60px; margin: 30px; font-family: Arial, Helvetica, sans-serif;">
+        You are already logged in !
+    </div>
+
+    <div class="continue" style="margin: 20px; text-align: center; transition: 0.6s;">
+        <a style="font-family: poppins; padding: 20px; font-size: 18px; background-color: lightseagreen; 
+        color: white; border-radius: 6px; text-decoration: none; text-transform: uppercase;"  href="/">Continue</a>
+    </div>
+
+    {% else %}
+
+    <div style="position: absolute; top: 55%;" class="container">
+        <div class="lower-container">
+            <div class="form-class">
+                <h4>PROVIDE THE FOLLOWING DETAILS</h4>
+                {% for message in messages %}
+                <h5>{{message}}</h5>
+                {% endfor %}
+                <form action="" method="post"> 
+                    {% csrf_token %}
+                    <div class="entry">
+                        <input type="text" placeholder="User Name" name="username" required value="">
+                    </div>
+                    <div class="entry">
+                        <input type="text" placeholder="First Name" name="firstname" required value="">
+                    </div>
+                    <div class="entry">
+                        <input type="text" placeholder="Last Name" name="lastname" required value="">
+                    </div>
+                    <div class="entry">
+                        <input type="email" placeholder="Email" name="email" required value="">
+                    </div>
+                    <div class="entry">
+                        <input type="password" placeholder="Password" name="password" required value="">
+                    </div>
+                    <div class="entry">
+                        <input type="password" placeholder="Confirm Password" required name="pass" value="">
+                    </div>
+                    <div class="submit_2">
+                    <input type="submit" value="SignUp">
+                    </div>
+
+                    <div class="login_2">
+                        <span>Have an account already?</span><a href="{% url 'auth_page:login' %}">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{user.first_name}} - Profile</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body{
+        background-color: #efefef;
+    }
+
+    .accout-main h4{
+        background-color: black;
+        color: white;
+        padding: 20px;
+        width: 100%;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        letter-spacing: 1px;
+        opacity: 0.7;
+    }
+
+    .accout-main ol{
+        margin-left: 15px;
+        margin-top: 10px;
+    }
+
+    .info{
+        max-width: 40%;
+    }
+
+    .accout-main li{
+        list-style: none;
+        font-size: 19px;
+        font-family: poppins;
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+        background-color: #ffd040;
+        padding: 10px;
+    }
+
+    .accout-main .edit{
+        margin-top: 20px;
+        float: left;
+    }
+
+    .accout-main .edit a{
+        text-decoration: none;
+        margin: 15px;
+        background-color: #3c382b;
+        color: white;
+        padding: 10px;
+        font-size: 19px;
+        border-radius: 5px;
+        font-family: poppins;
+        opacity: 0.8;
+        transition: 0.7s ease-in-out;
+    }
+
+    .accout-main .edit a:hover{
+        opacity: 1;
+    }
+
+    .accout-main .change{
+        margin-top: 20px;
+        margin-left: 15px;
+        float: left;
+    }
+
+    .accout-main .change a{
+        text-decoration: none;
+        color: white;
+        background-color: #168ff5;
+        padding: 15px;
+        border-radius: 5px;
+        font-family: poppins;
+        letter-spacing: 1px;
+        opacity: 0.7;
+        transition: 0.7s;
+    }
+
+    .accout-main .change a:hover{
+        opacity: 1;
+    }
+
+    .back{
+        margin: 10px;
+        margin-left: 15px;
+    }
+    .back a{
+        text-decoration: none;
+        font-size: 19px;
+    }
+
+    .back a:hover{
+        text-decoration: underline;
+    }
+
+    .bas-inf div{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        background-color: white;
+        width: 100%;
+        padding: 5px;
+        color: #57a4e6;
+    }
+
+    .jk h5{
+        margin-top: 20px;
+        margin-left: 10px;
+        font-size: 18px;
+        font-family: poppins;
+        font-weight: lighter;
+        color: teal;
+        background-color: white;
+        width: 40%;
+        padding: 10px;
+    }
+
+    .table table{
+        padding: 10px;
+    }
+
+    .table table th{
+        padding: 30px;
+        background-color: aquamarine;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .table table td{
+        padding: 20px;
+        font-family: poppins;
+        font-size: 15px;
+        background-color: cornsilk;
+    }
+
+    .table table td a{
+        background-color: rgb(113, 198, 255);
+        padding: 8px;
+        border-radius: 6px;
+        text-decoration: none;
+        color: white;
+        opacity: 0.8;
+    }
+
+    .table table td a:hover{
+        opacity: 1;
+    }
+
+    .submit-delete{
+        margin: 10px;
+    }
+
+    .submit-delete input[type="submit"]{
+        padding: 15px;
+        border-style: none;
+        border-radius: 6px;
+        background-color: red;
+        color: white;
+        letter-spacing: 1px;
+        opacity: 0.7;
+        transition: 0.8s;
+        font-size: 14px;
+    }
+
+    .submit-delete input[type="submit"]:hover{
+        opacity: 1;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div class="accout-main">
+        
+        <div class="account-lower">
+            
+            <h4 style="text-transform: uppercase;"><span style="color: red;">{{user.username}}'S</span> profile</h4>
+            <div class="back">
+                <a href="/">Go home</a>
+            </div>
+            <div class="info">
+                <div class="bas-inf">
+                    <ol>
+                        {% if user.username %}
+                      <div> User Name </div>  <li title="Your username">{{user.username}}</li>
+                        {% else %}
+                        <div> User Name </div>  <li title="Your username">None</li>
+                        {% endif %}
+
+                        {% if user.first_name %}
+                      <div> First Name </div>  <li title="Your first name">{{user.first_name}}</li>
+                        {% else %}
+                        <div> First Name </div>  <li title="Your first name">None</li>
+                        {% endif %}
+
+                        {% if user.last_name %}
+                      <div> Last Name </div>  <li title="Your last name">{{user.last_name}}</li>
+                        {% else %}
+                        <div> Last Name </div>  <li title="Your last name">None</li>
+                        {% endif %}
+
+                        {% if user.email %}
+                      <div> Email </div>  <li title="your email">{{user.email}}</li>
+                        {% else %}
+                      <div> Email </div>  <li title="your email">None</li>
+                        {% endif %}
+
+                      <div> Date Joined </div>  <li title="Date you registered">{{user.date_joined}}</li>
+                    </ol>
+                </div>
+                <div class="edit">
+                    <a title="Make changes to your account details" href="{% url 'account:editProfile' user.id %}">Edit Profile</a>
+                </div>
+            </div>
+
+            <div class="change">
+                <a title="Make changes to your password" href="{% url 'account:changePass' user.id %}">Change Password</a>
+            </div>
+
+            <div class="jk">
+                <h5 style="text-align: center; clear: left; float: left;">Your Albums are here!</h5>
+            </div>
+
+            <div class="table" style="float: left; clear: left; margin: 10px;">
+
+                {% for message in messages %}
+                <h5 style="color: red; text-align: center; font-size: 18p; 
+                font-family: Arial, Helvetica, sans-serif;">{{message}}</h5>
+                {% endfor%}
+
+                <form action="{% url 'account:delete' %}" method="post" name="deleteForm">
+                    {% csrf_token %}
+                    <table>
+                        <tr>
+                            <th>Check</th>
+                            <th>Album Title</th>
+                            <th>Action</th>
+                        </tr>
+
+                        {% for data in user.album_set.all %}
+                        <tr>
+                            <td><input type="checkbox" value="{{data.id}}" name="album" id="myalbum{{forloop.counter}}"></td>
+                            <td><label for="myalbum{{forloop.counter}}">{{data.album_title}}</label></td>
+                            <td><a href="">Edit</a></td>
+                            <input type="hidden" value="{{user.id}}" name="user_id">
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                    <div class="submit-delete">
+                        <input type="submit" onclick="return confirm('Are u sure u want to delete?')" value="Delete Selected">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <br><br>
+    
+
+
+
+ 
+</body>
+</html>

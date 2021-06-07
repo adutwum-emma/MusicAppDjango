@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <title>M-App Ghana</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'homepage/base_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'homepage/body_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'auth_page/login_style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'auth_page/sign_up.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'album_details/detail_style.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'file_upload/album_up.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'file_upload/song_up.css' %}">
+</head>
+<body>
+
+    <script type="text/javascript" src="{% static 'homepage/base_script.js' %}"></script>
+    <div class="the_nav">
+        <div class="my_second_Container">
+            <div class="last_container">
+                <nav>
+
+                    <div class="nav-but" onclick="menuShow()">
+                        <div id="bar1"></div>
+                        <div id="bar2"></div>
+                        <div id="bar3"></div>
+                    </div>
+
+                    
+
+                    <h4>tunes-app</h4>
+
+                    <div class="buttons"  style="left:-260px;" >
+                        <ul>
+                            {% if user.is_authenticated %}
+                            <li><a href="/">Home</a></li>
+                            <li><a href="">About</a></li>
+                            <li><a style="color: blue;" href="{% url 'account:profile' user.id %}">Hello, {{user.first_name}}</a></li>
+                            <li><a href="{% url 'search:lookUp' %}">Search</a></li>
+                            <li><a href="">Settings</a></li>
+                            <li><a href="{% url 'file_upload:uploadAlbum' user.id %}">Add-album</a></li>
+                            {% else %}
+                            <li><a href="/">Home</a></li>
+                            <li><a href="">About</a></li>
+                            <li><a href="{% url 'search:lookUp' %}">Search</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
+                    <div class="account_buttons">
+                        <ul>
+                            {% if user.is_authenticated %}
+                            <li><a style="color: lightblue;" id="signup" href="{% url 'auth_page:logout' %}">Logout</a></li>
+                            {% else %}
+                            <li><a id="login" href="{% url 'auth_page:login' %}">Login</a></li>
+                            <li><a id="signup" href="{% url 'auth_page:sign_up' %}">Signup</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    {% block content %}
+
+    {% endblock %}
+
+    
+</body>
+</html>

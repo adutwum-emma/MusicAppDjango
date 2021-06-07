@@ -1,0 +1,28 @@
+{% extends 'search/my_search.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'search/results.css' %}">
+</head>
+<body>
+    {% block content %}
+    <div class="results-main">
+        <div class="key">Search results for: <span>{{my_search}}</span></div>
+        <ul>
+            {% if album %}
+            {% for data in album %}
+            <li><a style="font-size: 18px;" href="{% url 'album_details:details' data.id %}">{{data.album_title}} - {{data.artist.first_name}}</a></li>
+            {% endfor %}
+            {% else %}
+            <div class="no-data">No data available for <strong> {{my_search}} </strong></div>
+            {% endif %}
+        </ul>
+    </div>
+    {% endblock %}
+</body>
+</html>

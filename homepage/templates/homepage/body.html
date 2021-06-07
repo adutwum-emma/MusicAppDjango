@@ -1,0 +1,52 @@
+{% extends 'homepage/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'homepage/body_style.css' %}">
+</head>
+<body>
+
+    {% block content %}
+
+    {% for data in album %}
+    <div class="main-container">
+        
+        <div class="middle-container">
+            <div class="artist_name">
+                <strong>{{data.artist.first_name}}</strong> <br>
+                {{data.album_title}}
+            </div>
+            <div class="image">
+                <img src="{{data.album_logo.url}}" width="370" height="400">
+            </div>
+            <div class="buttons">
+                <ul>
+                        {% csrf_token %}
+                    {%  if user.is_authenticated %}
+                    {% if user.id == data.artist.id %}
+                    <li><a id="b1" href="{% url 'album_details:details' data.id %}">View</a></li>
+                    <li><a id="b3" href="#">Edit</a></li>
+                    <input type="hidden" value="{{data.id}}" name="fav">
+                    {%else%}
+                    <li><a id="b1" href="{% url 'album_details:details' data.id %}">View</a></li>
+                    {% endif %}
+                    {% else %}
+                    <li><a id="b1" href="{% url 'album_details:details' data.id %}">View</a></li>
+                    {% endif %}
+                    </form>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+    {% endfor %}
+ 
+    {% endblock %}
+    
+</body>
+</html>

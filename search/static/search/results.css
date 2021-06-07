@@ -1,0 +1,37 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.results-main .key{
+    color: #2e2a17;
+    font-weight: bold;
+    font-family: poppins;
+    letter-spacing: 1px;
+    margin: 10px;
+}
+
+.results-main span{
+    font-weight: lighter;
+    color: #5bbfff;
+}
+
+.results-main ul{
+    margin: 10px;
+}
+
+.results-main ul li{
+    list-style: none;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.results-main ul li a{
+    text-decoration: none;
+    color: #80a7bf;
+}
+
+.results-main .no-data{
+    color: #fe1064;
+    font-family: sans-serif;
+}

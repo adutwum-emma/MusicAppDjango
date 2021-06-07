@@ -1,0 +1,52 @@
+{% extends 'homepage/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'file_upload/song_up.css' %}">
+</head>
+<body>
+    
+    {% block content %}
+
+    {% if user.is_authenticated %}
+
+    {% if user.id == album.artist.id %}
+
+    <title>Upload Song</title>
+    <div class="song-form">
+        <div class="lower">
+            <h4>UPLOAD SONG</h4>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="entry">
+                    <input type="text" name="song_title" placeholder="Song Title" required>
+                </div>
+
+                <div class="entry2">
+                    <h5>Audio File</h5>
+                    <input type="file" name="audio" accept=".mp3, .wav" required>
+                </div>
+
+                <div class="upload">
+                    <input type="submit" value="Upload">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% else %}
+    <div style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: red; margin: 10px; margin-top: 20px; text-align: center;"> You are not allowed to upload song till you log in!</div>
+    {% endif %}
+
+    {% else %}
+    <div style="text-align: center; font-size: 19px; font-weight: bolder; color: black; font-family: Arial, Helvetica, sans-serif; margin: 20px; margin-top: 50px;">You can't upload song when not logged in!</div>
+    {% endif %}
+
+    {% endblock %}
+    
+</body>
+</html>
